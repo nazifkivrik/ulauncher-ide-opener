@@ -20,6 +20,9 @@ class WorkspaceOpener(EventListener):
         return [path for path in paths if os.path.exists(path)]
 
     def get_editor_icon(self, editor):
+        # Get the directory where this script is located
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        
         # Map of editor names to their icon files
         icon_mapping = {
             'code': 'code.png',
@@ -27,8 +30,11 @@ class WorkspaceOpener(EventListener):
             'windsurf': 'windsurf.svg',
         }
         
-        icon_path = f"images/{icon_mapping.get(editor, 'default.svg')}"
-        return icon_path if os.path.exists(icon_path) else 'images/default.svg'
+        icon_name = icon_mapping.get(editor, 'default.svg')
+        icon_path = os.path.join(current_dir, 'images', icon_name)
+        
+        # Return absolute path to the icon, falling back to default if the specific icon doesn't exist
+        return icon_path if os.path.exists(icon_path) else os.path.join(current_dir, 'images', 'default.svg')
 
     def on_event(self, event, extension):
         search_paths = self.get_search_paths(extension.preferences['paths'])
