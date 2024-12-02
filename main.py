@@ -56,12 +56,12 @@ class WorkspaceOpener(EventListener):
                 
                 output = subprocess.check_output(cmd, shell=True, text=True)
                 projects = output.splitlines()
-
+                icon = self.get_editor_icon(editor)
                 # Add found projects to results
                 for project in projects:
                     items.append(
                         ExtensionResultItem(
-                            icon=self.get_editor_icon(editor),
+                            icon=icon,
                             name=f"[{editor}] {os.path.basename(project)}",
                             description=project,
                             on_enter=RunScriptAction(
@@ -70,10 +70,7 @@ class WorkspaceOpener(EventListener):
                         )
                     )
 
-                # Limit results to top 10
-                if len(items) >= 10:
-                    break
-
+              
             except subprocess.CalledProcessError:
                 continue
 
@@ -88,7 +85,7 @@ class WorkspaceOpener(EventListener):
                 )
             )
 
-        return RenderResultListAction(items[:10])
+        return RenderResultListAction(items)
 
 if __name__ == '__main__':
     IDEExtension().run()

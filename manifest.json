@@ -3,6 +3,7 @@
   "name": "IDE Workspace Opener",
   "description": "Open workspace files with your preferred IDE/editor",
   "developer_name": "Nazif Kıvrık",
+  "icon": "images/default.svg",
   "options": {
     "query_debounce": 0.1
   },
