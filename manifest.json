@@ -1,0 +1,44 @@
+{
+  "required_api_version": "^2.0.0",
+  "name": "IDE Workspace Opener",
+  "description": "Open workspace files with your preferred IDE/editor",
+  "developer_name": "Nazif Kıvrık",
+  "icon": "images/icon.png",
+  "options": {
+    "query_debounce": 0.1
+  },
+  "preferences": [
+    {
+      "id": "kw",
+      "type": "keyword",
+      "name": "Workspace Opener Keyword",
+      "description": "Keyword to trigger workspace search",
+      "default_value": "code"
+    },
+    {
+      "id": "paths",
+      "type": "text",
+      "name": "Search Paths",
+      "description": "Comma-separated paths to search for workspace files (e.g., ~/Projects,~/Work)",
+      "default_value": "~"
+    },
+    {
+      "id": "default_editor",
+      "type": "select",
+      "name": "Default Editor",
+      "description": "Default editor to use when no editor is specified",
+      "default_value": "code",
+      "options": [
+        { "value": "code", "text": "VS Code" },
+        { "value": "subl", "text": "Sublime Text" },
+        { "value": "atom", "text": "Atom" },
+        { "value": "vim", "text": "Vim" },
+        { "value": "nvim", "text": "Neovim" },
+        { "value": "emacs", "text": "Emacs" },
+        { "value": "kate", "text": "Kate" },
+        { "value": "cursor", "text": "Cursor" },
+        { "value": "windsurf", "text": "Windsurf" }
+      ]
+    }
+  ]
+}
